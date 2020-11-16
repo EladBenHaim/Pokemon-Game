@@ -1,0 +1,132 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="pokemonJson.js"></script>
+    <script src="battlejs.js"></script>
+    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="pokemon.css" />
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body onload="loadBattle()" style="background-image:url(images/bg/bgbattle.jpg);background-size:cover;background-repeat:no-repeat;height:650px;position:sticky;">
+                
+    <a id="goHome" href="#" onclick="returnToHome()"><img id="homeImage" src="images//bg/home.png" style="position:absolute;height:50px;width:50px;top:5%;left:48%" /></a>
+    <video id="winBattleMusic" controls muted style="height:0px;width:0px; ">
+        <source src="sound/beep.mp3" type="video/mp4">
+    </video>
+    <div class="game" style="left:1.5%;top:12%">
+        
+        <img id="attackGifOponent" src="images/bg/attack.gif" style="opacity: 0.6; filter: alpha(opacity = 60); position:absolute;left:80%;top:50%;z-index:1;display:none;" />
+        <img id="attackGifPlayer" src="images/bg/attack.gif" style="opacity: 0.6; filter: alpha(opacity = 60); position:absolute;left:6%;top:50%;z-index:1;display:none;" />
+        <a href="POKEMON.html" style="left:45%;top:45%;">
+            <img id="returnToCatch" onmousemove="catchPokemon()" src="images/bg/pokeballmenu.png" style="border-radius:10px;height:130px;width:130px;display:none;position:absolute;left:45%;top:45%;z-index:10;" />
+        </a>
+        <table id="lastAttack" style="position:absolute;left:9%;top:42%;">
+            <tr>
+                <td id="lastAttackTD" style="color:white;border-color:white;border-style:double;"> LAST ATTACK 0</td>
+            </tr>
+        </table>
+
+        <table id="lastAttack2" style="position:absolute;left:80%;top:42%;">
+            <tr>
+                <td id="lastAttackTD2" style="color:white;border-color:white;border-style:double;">LAST ATTACK 0</td>
+            </tr>
+        </table>
+
+        <table id="powerAttack" style="position:absolute;left:9%;top:42%;z-index:10;display:none;">
+            <tr>
+
+                <td><img style="height:7px;width:10px;" id="arrow_1" src="images/bg/arrowselect.png" /></td>
+                <td><img style="height:7px;width:10px;" id="arrow_2" src="images/bg/arrowselect.png" /></td>
+                <td><img style="height:7px;width:10px;" id="arrow_3" src="images/bg/arrowselect.png" /></td>
+                <td><img style="height:7px;width:10px;" id="arrow_4" src="images/bg/arrowselect.png" /></td>
+                <td><img style="height:7px;width:10px;" id="arrow_5" src="images/bg/arrowselect.png" /></td>
+                <td><img style="height:7px;width:10px;" id="arrow_6" src="images/bg/arrowselect.png" /></td>
+                <td><img style="height:7px;width:10px;" id="arrow_7" src="images/bg/arrowselect.png" /></td>
+                <td><img style="height:7px;width:10px;" id="arrow_8" src="images/bg/arrowselect.png" /></td>
+
+            </tr>
+            <tr>
+                <td style="border-radius:8px; border-color:white;border-style:double;height:3px;width:10px;background-color:red;"></td>
+                <td style="border-radius:8px;border-color:white;border-style:double;height:3px;width:10px;background-color:orangered;"></td>
+                <td style="border-radius:8px;border-color:white;border-style:double;height:3px;width:10px;background-color:darkorange;"></td>
+                <td style="border-radius:8px;border-color:white;border-style:double;height:3px;width:10px;background-color:orange;"></td>
+                <td style="border-radius:8px;border-color:white;border-style:double;height:3px;width:10px;background-color:yellow;"></td>
+                <td style="border-radius:8px;border-color:white;border-style:double;height:3px;width:10px;background-color:greenyellow;"></td>
+                <td style="border-radius:8px;border-color:white;border-style:double;height:3px;width:10px;background-color:lawngreen;"></td>
+                <td style="border-radius:8px;border-color:white;border-style:double;height:3px;width:10px;background-color:green;"></td>
+
+
+
+            </tr>
+        </table>
+        <div class="opponent">
+            <div class="stats">
+                <div class="top">
+                    <div class="pokeballs">
+                        <div class="pokeball"></div>
+                        <div class="pokeball"></div>
+                        <div class="pokeball"></div>
+                        <div class="pokeball"></div>
+                        <div class="pokeball"></div>
+                    </div>
+                    <div id="playerHPAmount" class="hp-count"></div>
+                </div>
+                <span class="name">
+                    PLAYER
+                </span>
+                <span id="playerAttack" class="name">
+                    ATTACK
+                </span>
+
+
+
+            </div>
+
+            <img class="pokemon" id="oponentPokemon" style="left:80%;top:200%" />
+
+        </div>
+
+
+        <div class="player">
+            <div class="stats">
+                <div class="top">
+                    <div class="pokeballs">
+                        <div class="pokeball"></div>
+                        <div class="pokeball"></div>
+                        <div class="pokeball"></div>
+                        <div class="pokeball"></div>
+                        <div class="pokeball"></div>
+                    </div>
+                    <div id="oponentHPAmount" class="hp-count"></div>
+                </div>
+                <span class="name">
+                    COMPUTER
+                </span>
+                <span id="oponentAttack" class="name">
+                    ATTACK
+                </span>
+
+            </div>
+            <div class="box" style="direction:rtl;">
+                <div id="message" class="message">
+                    <div class="actions">
+                        <button id="attackBtn1" style="display:none;" onclick="moveElementOponent(this.id)"><a href="#" style="color:white;">ATTACK1</a></button>
+                        <button id="attackBtn2" style="display:none;" onclick="moveElementOponent(this.id)"><a href="#" style="color:white;">ATTACK2</a></button>
+                        <button id="attackBtn3" style="display:none;" onclick="moveElementOponent(this.id)"><a href="#" style="color:white;"></a></button>
+                        <button id="attackBtn4" style="display:none;" onclick="moveElementOponent(this.id)"><a href="#" style="color:white;"></a></button>
+                        <button id="setBtn" onclick="arrowsInterval()"><a href="#" style="color:white;">SET</a></button>
+                    </div>
+                </div>
+            </div>
+            <img class="pokemon" id="playerPokemon" style="left:7%;top:110%" />
+        </div>
+
+    </div>
+
+
+</body>
+</html>
+

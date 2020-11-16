@@ -1,0 +1,97 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="pokemon1.css" />
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="pokemonjs.js"></script>
+    <script src="pokemonJson.js"></script>
+        
+</head>
+<body id="body2" onload="hideAll()" style="background-image:url(images/bg/bgimg5.png);background-size:cover;background-repeat:no-repeat;height:100%;position:sticky;">
+    <svg onmouseover="beepPlay()" onclick="generalClock()" id="play" viewBox="0 0 163 163" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" ="0px">
+        <g fill="none">
+            <g transform="translate(2.000000, 2.000000)" stroke-width="4">
+                <path d="M10,80 C10,118.107648 40.8923523,149 79,149 L79,149 C117.107648,149 148,118.107648 148,80 C148,41.8923523 117.107648,11 79,11" id="lineOne" stroke="#A5CB43"></path>
+                <path d="M105.9,74.4158594 L67.2,44.2158594 C63.5,41.3158594 58,43.9158594 58,48.7158594 L58,109.015859 C58,113.715859 63.4,116.415859 67.2,113.515859 L105.9,83.3158594 C108.8,81.1158594 108.8,76.6158594 105.9,74.4158594 L105.9,74.4158594 Z" id="triangle" stroke="#A3CD3A"></path>
+                <path d="M159,79.5 C159,35.5933624 123.406638,0 79.5,0 C35.5933624,0 0,35.5933624 0,79.5 C0,123.406638 35.5933624,159 79.5,159 L79.5,159" id="lineTwo" stroke="#A5CB43"></path>
+            </g>
+        </g>
+    </svg>
+
+    <p style="background-color:whitesmoke;border-radius:5px; color:red;font-family:Arial;position:absolute;top:830%;left:33%;display:none;" id="plsChangePokemon">ONLY 7 POKEMONS ALLOWED <br /> PLEASE SELECT POKEMON TO CHANGE</p>
+    <p style="background-color:whitesmoke;border-radius:5px; color:red;font-family:Arial;position:absolute;top:830%;left:33%;display:none;" id="pokemonToBattleChoose">PLAESE SELECT A POKEMON TO BATTLE <br /> </p>
+
+    <img src="images/bg/catchAll.png" id="catchAll" style="position:absolute;left:39%;top:500%;width:350px;height:350px;" />
+    <img id="swipeUp" src="images/bg/swipe_up.gif" style="display:none;top:500%;left:41.5%;height:250px;width:250px;position:absolute;" />
+    <img id="arrow" src="images/bg/arrow.gif" style="height:95px;width:95px;top:800%;left:2%;position:absolute;display:none;" />
+    <a href="#"><img src="images/bg/pokeball.png" id="pokeball" ondragstart="getCor(event)" draggable="true" ondragend="getDragCor(event)" /></a>
+    <img id="body1" />
+    <img src="images\bg\pokeballopen.gif" id="catchedPoke" style="display:none;height:300px; width:450px;" />
+
+    <button href="#" id="tryAgain" class="btn btn-3" style="display:none;color:black;" onclick="continueCatch()">TRY AGAIN</button>
+    <div id="pokemonCatchedDiv" style="display:none;"> YOU CATCHED THIS POKEMON : </div>
+    <img id="pokemonCatchedImage" style="display:none;" />
+    <button href="#" id="continueCatching" class="btn btn-3" style="display:none;color:black;" onclick="continueCatch()">CATCH OTHER POKEMON</button>
+    <button href="#" id="addToPokemons" style="display:none;color:black;" class="btn btn-3" onclick="addPokemon()">ADD TO MY POKEMONS</button>
+    <video id="bgSound" autoplay controls muted loop style="height:0px;width:0px; ">
+        <source src="sound/bgsound.mp3" type="video/mp4">
+    </video>
+    <video id="beepSound" controls muted style="height:0px;width:0px; ">
+        <source src="sound/beep.mp3" type="video/mp4">
+    </video>
+    <video id="startMusic" controls autoplay style="height:0px;width:0px; ">
+        <source src="sound/startMusic.mp3" type="video/mp4">
+    </video>
+    <video id="catchPokeSuccess" controls muted style="height:0px;width:0px; ">
+        <source src="sound/pokemoncaught.mp3" type="video/mp4">
+    </video>
+    <a href="#" id="hrefSound">
+        <img id="imgSoundMute" src="sound/mute.png" onclick="onOffMusic()" style="display:none;" />
+        <img id="imgSoundUnmute" src="sound/unmute.png" onclick="onOffMusic()" style="display:block;" />
+    </a>
+    <div id="pokemonMenu" style="top:840%;left:1%;">
+        <center><font style="font-family:Arial;color:black;font-size:20px;"><b><i>MY POKEMONS</i></b></font></center>
+        <table id="pokemonTable">
+            <tr>
+                <td id="pokeballTD"><img src="images/bg/pokeballmenu.png" style="height:50px;width:50px" /></td>
+                <td id="pokeballTD"><img src="images/bg/pokeballmenu.png" style="height:50px;width:50px" /></td>
+                <td id="pokeballTD"><img src="images/bg/pokeballmenu.png" style="height:50px;width:50px" /></td>
+                <td id="pokeballTD"><img src="images/bg/pokeballmenu.png" style="height:50px;width:50px" /></td>
+                <td id="pokeballTD"><img src="images/bg/pokeballmenu.png" style="height:50px;width:50px" /></td>
+                <td id="pokeballTD"><img src="images/bg/pokeballmenu.png" style="height:50px;width:50px" /></td>
+                <td id="pokeballTD"><img src="images/bg/pokeballmenu.png" style="height:50px;width:50px" /></td>
+            </tr>
+            <tr>
+                <td><a href="#"><img src="images/bg/plusicon.png" id="pokemon_1" style="height:50px;width:50px;" onclick="choosePokemon(this.id)" /></a></td>
+                <td><a href="#"><img src="images/bg/plusicon.png" id="pokemon_2" style="height:50px;width:50px" onclick="choosePokemon(this.id)" /></a></td>
+                <td><a href="#"><img src="images/bg/plusicon.png" id="pokemon_3" style="height:50px;width:50px" onclick="choosePokemon(this.id)" /></a></td>
+                <td><a href="#"><img src="images/bg/plusicon.png" id="pokemon_4" style="height:50px;width:50px" onclick="choosePokemon(this.id)" /></a></td>
+                <td><a href="#"><img src="images/bg/plusicon.png" id="pokemon_5" style="height:50px;width:50px" onclick="choosePokemon(this.id)" /></a></td>
+                <td><a href="#"><img src="images/bg/plusicon.png" id="pokemon_6" style="height:50px;width:50px" onclick="choosePokemon(this.id)" /></a></td>
+                <td><a href="#"><img src="images/bg/plusicon.png" id="pokemon_7" style="height:50px;width:50px" onclick="choosePokemon(this.id)" /></a></td>
+                <td id="startBattleTD">
+                    <!--<button style="background-image: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);">
+    <a onclick="goBattle()" href="battle.html" id="startBattle">START<br /> BATTLE</a>
+                </button>-->
+                    <div  onclick="goBattle()"  style="font-size:13px;text-align: center;vertical-align: middle;line-height:12px;" class="button_cont" align="center"><a id="startBattle"  class="example_a" href="battle.html"  rel="nofollow noopener" >BATTLE!</a></div>
+
+
+                </td>
+                
+            </tr>
+            <tr>
+                <td id="pokemon_1_select" style="height:10px;background-color:none;border-radius:10px;"></td>
+                <td id="pokemon_2_select" style="height:10px;background-color:none;border-radius:10px;"></td>
+                <td id="pokemon_3_select" style="height:10px;background-color:none;border-radius:10px;"></td>
+                <td id="pokemon_4_select" style="height:10px;background-color:none;border-radius:10px;"></td>
+                <td id="pokemon_5_select" style="height:10px;background-color:none;border-radius:10px;"></td>
+                <td id="pokemon_6_select" style="height:10px;background-color:none;border-radius:10px;"></td>
+                <td id="pokemon_7_select" style="height:10px;background-color:none;border-radius:10px;"></td>
+            </tr>
+        </table>
+        <img src="images/bg/plusicon.png" id="checkImage" style="display:none;" />
+    </div>
+</body>
+</html>

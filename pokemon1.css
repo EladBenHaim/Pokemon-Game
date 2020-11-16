@@ -1,0 +1,175 @@
+#imgSoundMute {
+    height: 50px;
+    width: 50px;
+}
+
+#imgSoundUnmute {
+    height: 50px;
+    width: 50px;
+}
+
+
+svg#play {
+    width: 150px;
+    margin: 120px auto;
+    display: block;
+    cursor: pointer;
+    transform-origin: 50% 50%;
+    position:absolute;
+    left:45%;
+    top:60%;
+    
+}
+
+    svg#play #triangle {
+        fill: rgba(22,22,22,0);
+        transition: 500ms;
+        transform-origin: 50% 50%;
+    }
+
+    svg#play:hover #triangle {
+        fill: #A3CD3A;
+        transform-origin: 50% 50%;
+    }
+
+svg #lineOne, svg #lineTwo {
+    transform-origin: 50% 50%;
+    transition: 1s;
+}
+
+svg:hover #lineOne {
+    transform: rotate(260deg);
+    -webkit-transform: rotate(260deg);
+    -moz-transform: rotate(260deg);
+    -o-transform: rotate(260deg);
+    transform-origin: 50% 50%;
+}
+
+svg:hover #lineTwo {
+    transform: rotate(-450deg);
+    transform-origin: 50% 50%;
+} 
+
+.btn {
+    flex: 1 1 auto;
+    margin: 10px;
+    padding: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+}
+
+.btn-3 {
+    background-image: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);
+
+    
+    
+}
+
+.btn:hover {
+    background-position: right center; /* change the direction of the change here */
+}
+
+
+
+#tryAgain {
+    position: absolute;
+    left: 45%;
+    top: 350%;
+}
+
+#catchedPokeClose {
+    border-radius: 20px;
+    position: absolute;
+    left: 33%;
+    top: 280%;
+}
+
+#catchedPoke {
+    border-radius: 20px;
+    position: absolute;
+    left: 33%;
+    top: 280%;
+    filter: drop-shadow(15px 15px 15px lightgrey);
+    
+}
+
+#pokeball {
+    position: absolute;
+    top:900%;
+    left: 45%;
+    height: 110px;
+    width: 150px;
+    z-index: -1;
+}
+
+#continueCatching {
+    position: absolute;
+    left: 50%;
+    top: 900%;
+}
+
+#addToPokemons {
+    position: absolute;
+    left: 32%;
+    top: 900%;
+}
+
+#pokemonCatchedImage {
+    position: absolute;
+    top: 720%;
+    left: 62%;
+    width: 110px;
+    height: 110px;
+}
+
+#pokemonCatchedDiv {
+    position: absolute;
+    top: 770%;
+    left: 30%;
+    width: 500px;
+    height: 110px;
+    font-family:Arial;
+    color:black;
+    font-size:30px;
+}
+
+#pokemonMenu{
+    position:absolute;
+    /*top:100%;
+    left:1%;*/
+}
+
+body {
+    background-image: url("images\backgruond.jpg");
+}
+
+.example_a {
+    color: #fff !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #434343;
+    padding: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    transition: all 0.4s ease 0s;
+    height: 10px;
+    width: 50px;
+    vertical-align: middle;
+    
+}
+
+    .example_a:hover {
+        background: green;
+        letter-spacing: 1px;
+        -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+        -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+        box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+        transition: all 0.4s ease 0s;
+    }
